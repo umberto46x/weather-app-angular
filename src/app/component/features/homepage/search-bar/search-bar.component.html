@@ -1,0 +1,36 @@
+<section class="searchbar_container">
+  <h2>Search for location</h2>
+  <label for="locationInput">Location</label>
+  <div class="searchbar_input_container">
+    <input
+      class="searchbar_input"
+      type="text"
+      name="locationInput"
+      id="locationInput"
+      #locationInput
+      placeholder="Ex: New York"
+    />
+    <button
+      title="Search"
+      class="searchbar_cta"
+      (click)="handleSearch(locationInput.value)"
+    >
+      <img
+        class="search_icon"
+        src="../../../../../assets/search.svg"
+        alt="Geolocalization Icon to update the location"
+      />
+    </button>
+    <button
+      title="Update the localization"
+      (click)="handleLocalizationUpdate()"
+      class="geolocation_cta"
+    >
+      <img
+        class="geolocalization_icon"
+        src="../../../../../assets/geo-alt-fill.svg"
+        alt="Geolocalization Icon to update the location"
+      />
+    </button>
+  </div>
+</section>

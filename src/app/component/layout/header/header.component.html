@@ -1,0 +1,21 @@
+<header class="header_container">
+  <a routerLink="/"
+    ><img
+      class="header_logo"
+      src="../../../../assets/logo.webp"
+      alt="App Logo, a Cloud with a sun"
+  /></a>
+
+  <h1>Weather App</h1>
+  <nav class="header_navbar">
+    <ul>
+      <li><a routerLink="/">Home</a></li>
+      <li>
+        <a routerLink="profile/:{{ userId }}">Profile</a>
+      </li>
+      <li>
+        <a routerLink="/auth">Auth</a>
+      </li>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,149 @@
+@use "../../../../styles/colors" as *;
+@use "../../../../styles/sizes" as *;
+
+.searchbar_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $l;
+  padding: $l * 2;
+  margin: auto;
+  margin-top: $m;
+  margin-bottom: $m;
+  background-color: $primaryC;
+  color: white;
+  transition: transform 0.5s;
+
+  &:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 5px 5px 5px 5px $secondaryC;
+  }
+
+  h2 {
+    font-size: $l;
+    font-weight: $bold;
+    text-align: center;
+    margin: 0;
+  }
+  label {
+    font-size: $m;
+  }
+
+  .searchbar_input_container {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+  }
+
+  .searchbar_input {
+    width: 75%;
+    margin: 0;
+    border: 0;
+    display: inline-block;
+    padding: $s;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      color: $primaryC;
+    }
+  }
+
+  button {
+    background-color: $accentHigh;
+    color: white;
+    border: 0;
+    width: auto;
+    padding: $s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .geolocalization_icon,
+    .search_icon {
+      width: $l;
+      height: $l;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .searchbar_container {
+    margin-top: $l;
+    margin-bottom: $l;
+    width: 80%;
+    padding: $xl * 2;
+
+    h2 {
+      font-size: $xl;
+    }
+    label {
+      font-size: $l;
+    }
+
+    .searchbar_input {
+      padding: $m;
+      font-size: $l;
+    }
+
+    button {
+      padding: $m;
+    }
+  }
+}
+@media screen and (min-width: 1024px) {
+  .searchbar_container {
+    margin-top: $xl;
+    margin-bottom: $xl;
+
+    h2 {
+      font-size: $xxl;
+    }
+    label {
+      font-size: $xl;
+    }
+
+    .searchbar_input {
+      padding: $m;
+      font-size: $xl;
+    }
+
+    button {
+      padding: $m;
+
+      .geolocalization_icon,
+      .search_icon {
+        width: $xxl;
+        height: $xxl;
+      }
+    }
+  }
+}
+@media screen and (min-width: 1200px) {
+  .searchbar_container {
+    margin-top: $xxl;
+    margin-bottom: $xxl;
+    padding: $xl * 2.5;
+
+    h2 {
+      font-size: $xxl;
+    }
+    label {
+      font-size: $xl;
+    }
+
+    .searchbar_input {
+      padding: $l;
+      font-size: $xl;
+    }
+
+    button {
+      padding: $l;
+    }
+  }
+}

@@ -1,0 +1,168 @@
+@use "../../../styles/colors.scss" as *;
+@use "../../../styles/sizes.scss" as *;
+
+.header_container {
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: $s;
+  margin-top: $s;
+  background-color: $primaryC;
+  color: white;
+
+  h1 {
+    font-size: $m;
+    font-weight: $bold;
+    padding: $xs;
+    margin: 0;
+  }
+
+  .header_logo {
+    width: 64px;
+    height: 64px;
+    &:hover {
+      transform: rotate(360deg);
+      transition: all 1.5s;
+    }
+  }
+
+  .header_navbar {
+    ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+
+      li {
+        list-style-type: none;
+        display: inline-block;
+
+        a {
+          text-decoration: none;
+          color: white;
+          font-size: $s * 2;
+          padding: $s;
+          transition:
+            color 0.25s,
+            background-color 0.25s;
+
+          &:hover {
+            background-color: $accentHigh;
+            color: color;
+            cursor: pointer;
+          }
+
+          &:active {
+            background-color: darken($color: $accentLow, $amount: 10);
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header_container {
+    width: 80%;
+    margin: auto;
+    padding: $m;
+    margin-top: $m;
+
+    h1 {
+      font-size: $l;
+      padding: $m;
+    }
+
+    .header_logo {
+      width: 72px;
+      height: 72px;
+    }
+
+    .header_navbar {
+      ul {
+        li {
+          a {
+            font-size: $m * 1.5;
+            padding: $m;
+          }
+
+          button {
+            .geolocalization_icon {
+              width: $xl;
+              height: $xl;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .header_container {
+    margin-top: $l;
+    .header_logo {
+      width: 80px;
+      height: 80px;
+    }
+
+    h1 {
+      font-size: $xl;
+      padding: $l;
+    }
+
+    .header_navbar {
+      ul {
+        li {
+          a {
+            font-size: $l;
+            padding: $l;
+          }
+
+          button {
+            .geolocalization_icon {
+              width: $xxl;
+              height: $xxl;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .header_container {
+    margin-top: $xl;
+    .header_logo {
+      width: 96px;
+      height: 96px;
+    }
+
+    h1 {
+      font-size: $xxl;
+      padding: $xl;
+    }
+
+    .header_navbar {
+      ul {
+        li {
+          a {
+            font-size: $xl;
+            padding: $xl;
+          }
+
+          button {
+            .geolocalization_icon {
+              width: $xxl * 1.5;
+              height: $xxl * 1.5;
+            }
+          }
+        }
+      }
+    }
+  }
+}
