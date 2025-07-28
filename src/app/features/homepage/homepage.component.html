@@ -1,6 +1,4 @@
 <main class="homepage_container">
-  <app-search-bar
-    (search)="moveSearchFromSearchToHomepage($event)"
-  ></app-search-bar>
-  <app-weather></app-weather>
+  <app-search-bar (search)="handleSearch($event)"></app-search-bar>
+  <app-weather search="{{ search }}"></app-weather>
 </main>

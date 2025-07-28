@@ -22,7 +22,7 @@ export class WeatherService {
   loadForecastWeatherData(query: string) {
     const url: string =
       this.baseUrl +
-      `forecast.json?key=${this.key}&q=${query}&days=10&aqi=no&alerts=no`;
+      `/forecast.json?key=${this.key}&q=${query}&days=10&aqi=no&alerts=no`;
     let response: ForecastedWeatherResponse;
 
     this.store.dispatch(setLoadingWeatherData());
@@ -37,7 +37,7 @@ export class WeatherService {
     }
   }
 
-  getCurrentWeatherData(query: string) {
+  loadCurrentWeatherData(query: string) {
     const url: string =
       this.baseUrl + `/current.json?key=${this.key}&q=${query}&aqi=yes`;
 

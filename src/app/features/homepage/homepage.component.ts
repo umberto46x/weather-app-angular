@@ -11,14 +11,7 @@ import { WeatherComponent } from '../../component/features/homepage/weather/weat
 export class HomepageComponent {
   search?: string;
 
-  moveSearchFromSearchToHomepage(search: string) {
+  handleSearch(search: string) {
     this.search = search;
-    console.log(
-      'Succesfully moved search from the search bar to the homepage:',
-      'SearchBar: ',
-      search,
-      ' Homepage: ',
-      this.search,
-    );
   }
 }
