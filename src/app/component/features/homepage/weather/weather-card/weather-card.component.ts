@@ -8,5 +8,6 @@ import { WeatherDataResponse } from '../../../../../models/WeatherDataResponse';
   styleUrl: './weather-card.component.scss',
 })
 export class WeatherCardComponent {
-  weatherData = input<WeatherDataResponse>();
+  currentWeather = input<[Location]>();
+  forecastWeather = input<[Location, Forecast]>;
 }

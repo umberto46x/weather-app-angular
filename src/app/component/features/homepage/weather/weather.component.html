@@ -8,10 +8,9 @@
   </h2>
 
   <section class="weatherInfo_container container">
-    <app-weather-card [currentDay]="weather.data.current"></app-weather-card>
     <app-weather-card
       *ngFor="let forecastDay of weather.data?.forecast?.forecastday"
-      [forecastedDay]="{}"
+      [weatherData]=""
     />
   </section>
 </section>
