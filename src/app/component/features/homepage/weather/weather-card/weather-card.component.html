@@ -1,5 +1,177 @@
-@if (this.weatherData()) {
-  <article class="weather_card_container">
-    <h3>Today's Weather at {{ this.weatherData()?.current?.last_updated }}</h3>
+@if (this.currentWeather()) {
+  <article class="weather_card_container-current row">
+    <h3 class="col-12 weather_card_title">
+      Real time weather updated at: <br />
+      {{ this.currentWeather()?.last_updated }}
+    </h3>
+    <p class="col-12">
+      <img
+        class="condition_image"
+        [src]="this.currentWeather()?.condition?.icon"
+        alt="Icon Current Weather Condition"
+      />{{ this.currentWeather()?.condition?.text }}
+    </p>
+    <p class="col-12 col-md-4 col-lg-3">
+      <img
+        class="weather_data_icons"
+        src="../../../../../../assets/thermometer.svg"
+        alt="Thermometer Icon"
+      />Actual Temp: {{ this.currentWeather()?.temp_c }}
+    </p>
+    <p class="col-12 col-md-4 col-lg-3">
+      <img
+        class="weather_data_icons"
+        src="../../../../../../assets/thermometer.svg"
+        alt="Thermometer Icon"
+      />Perceived Temp: {{ this.currentWeather()?.feelslike_c }}
+    </p>
+    <p class="col-12 col-md-4 col-lg-3">
+      <img
+        class="weather_data_icons"
+        src="../../../../../../assets/moisture.svg"
+        alt="Humidity Icon"
+      />
+      Humidity: {{ this.currentWeather()?.humidity }}
+    </p>
+    <p class="col-12 col-md-4 col-lg-3">
+      <img
+        class="weather_data_icons"
+        src="../../../../../../assets/wind.svg"
+        alt="Wind Icon"
+      />
+      Wind Km/h:
+      {{ this.currentWeather()?.wind_kph }}
+    </p>
+    <p class="col-12 col-md-4 col-lg-3">
+      <img
+        class="weather_data_icons"
+        src="../../../../../../assets/wind.svg"
+        alt="Wind Icon"
+      />
+      <img
+        class="weather_data_icons"
+        src="../../../../../../assets/thermometer.svg"
+        alt="Thermometer Icon"
+      />
+      Wind Temp:
+      {{ this.currentWeather()?.windchill_c }}
+    </p>
+    <p class="col-12 col-md-4 col-lg-3">
+      <img
+        class="weather_data_icons"
+        src="../../../../../../assets/sun.svg"
+        alt="Sun Icon"
+      />
+      UV:
+      {{ this.currentWeather()?.uv }}
+    </p>
+  </article>
+}
+
+@if (this.forecastWeather()) {
+  <article class="weather_card_container row">
+    <h3 class="col-12 weather_card_title">
+      Forecast for : {{ this.forecastWeather()?.date }}
+    </h3>
+
+    <p class="col-12">
+      <img
+        class="condition_image"
+        [src]="this.forecastWeather()?.day?.condition?.icon"
+        alt="Icon Daily Weather Condition"
+      />{{ this.forecastWeather()?.day?.condition?.text }}
+    </p>
+
+    <p class="col-12 col-md-4 col-lg-3">
+      <img
+        class="weather_data_icons"
+        src="../../../../../../assets/thermometer-sun.svg"
+        alt="Sun and Thermometer Icon"
+      />
+      Max Temp: {{ this.forecastWeather()?.day?.maxtemp_c }}
+    </p>
+    <p class="col-12 col-md-4 col-lg-3">
+      <img
+        class="weather_data_icons"
+        src="../../../../../../assets/thermometer.svg"
+        alt="Thermometer Icon"
+      />Avg Temp: {{ this.forecastWeather()?.day?.avgtemp_c }}
+    </p>
+    <p class="col-12 col-md-4 col-lg-3">
+      <img
+        class="weather_data_icons"
+        src="../../../../../../assets/thermometer-snow.svg"
+        alt="Snow and Thermometer Icon"
+      />
+      Min Temp: {{ this.forecastWeather()?.day?.mintemp_c }}
+    </p>
+    <p class="col-12 col-md-4 col-lg-3">
+      <img
+        class="weather_data_icons"
+        src="../../../../../../assets/moisture.svg"
+        alt="Humidity Icon"
+      />Humidity: {{ this.forecastWeather()?.day?.avghumidity }}
+    </p>
+    <p class="col-12 col-md-4 col-lg-3">
+      <img
+        class="weather_data_icons"
+        src="../../../../../../assets/sun.svg"
+        alt="Sun Icon"
+      />
+      UV:
+      {{ this.forecastWeather()?.day?.uv }}
+    </p>
+    <p class="col-12 col-md-4 col-lg-3">
+      <img
+        class="weather_data_icons"
+        src="../../../../../../assets/wind.svg"
+        alt="Wind Icon"
+      />
+      Max Wind Km/h: {{ this.forecastWeather()?.day?.maxwind_kph }}
+    </p>
+    <p class="col-12 col-md-4 col-lg-3">
+      <img
+        class="weather_data_icons"
+        src="../../../../../../assets/snow2.svg"
+        alt="Snow Icon"
+      />
+      Total Snow (cm): {{ this.forecastWeather()?.day?.totalsnow_cm }}
+    </p>
+    <p class="col-12 col-md-4 col-lg-3">
+      <img
+        class="weather_data_icons"
+        src="../../../../../../assets/cloud-snow.svg"
+        alt="Clouw and Snow Icon"
+      />
+      Chance of snow: {{ this.forecastWeather()?.day?.daily_chance_of_snow }}
+      <br />
+      <progress
+        title="{{ this.forecastWeather()?.day?.daily_chance_of_snow }}"
+        value="{{ this.forecastWeather()?.day?.daily_chance_of_snow }}"
+      ></progress>
+    </p>
+    <p class="col-12 col-md-4 col-lg-3">
+      <img
+        class="weather_data_icons"
+        src="../../../../../../assets/droplet.svg"
+        alt="Water Icon"
+      />
+      Total Rain(mm): {{ this.forecastWeather()?.day?.totalprecip_mm }}
+    </p>
+    <p class="col-12 col-md-4 col-lg-3">
+      <img
+        class="weather_data_icons"
+        src="../../../../../../assets/cloud-rain-heavy.svg"
+        alt="Clouw and Rain Icon"
+      />
+      Chance of rain:
+      {{ this.forecastWeather()?.day?.daily_chance_of_rain }}
+      <br />
+      <progress
+        title="{{ this.forecastWeather()?.day?.daily_chance_of_rain }}"
+        value="{{ this.forecastWeather()?.day?.daily_chance_of_rain }}"
+      ></progress>
+    </p>
+    <button routerLink="/details" class="col-12">Show Details</button>
   </article>
 }

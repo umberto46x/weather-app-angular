@@ -1,16 +1,26 @@
-<section
-  *ngIf="weatherData$ | async as weather"
-  class="weather_container container"
->
-  <h2>
-    Weather at
-    <span>{{ weather.data?.location?.name }}</span>
-  </h2>
+<section *ngIf="weatherData$ | async as weather">
+  @if (weather.data != undefined) {
+    <section class="weather_container container">
+      <h2>
+        Weather at
+        <span>{{ weather.data.location.name }}</span>
+      </h2>
 
-  <section class="weatherInfo_container container">
-    <app-weather-card
-      *ngFor="let forecastDay of weather.data?.forecast?.forecastday"
-      [weatherData]=""
-    />
-  </section>
+      <h3>Real Time Data</h3>
+
+      <section class="weatherInfo_container container row">
+        <app-weather-card
+          [currentWeather]="weather.data.current"
+          [location]="weather.data.location"
+        ></app-weather-card>
+        <h3>Daily Forecasts</h3>
+        <app-weather-card
+          *ngFor="let forecastDay of weather.data?.forecast?.forecastday"
+          [location]="weather.data.location"
+          [forecastWeather]="forecastDay"
+        >
+        </app-weather-card>
+      </section>
+    </section>
+  }
 </section>

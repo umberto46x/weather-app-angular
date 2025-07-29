@@ -47,7 +47,7 @@ export interface Current {
   gust_kph: number;
 }
 
-interface Condition {
+export interface Condition {
   text: string;
   icon: string;
   code: number;
@@ -57,7 +57,7 @@ export interface Forecast {
   forecastday: Forecastday[];
 }
 
-interface Forecastday {
+export interface Forecastday {
   date: string;
   date_epoch: number;
   day: Day;
@@ -65,7 +65,7 @@ interface Forecastday {
   hour: Hour[];
 }
 
-interface Day {
+export interface Day {
   maxtemp_c: number;
   maxtemp_f: number;
   mintemp_c: number;
@@ -88,7 +88,7 @@ interface Day {
   uv: number;
 }
 
-interface Astro {
+export interface Astro {
   sunrise: string;
   sunset: string;
   moonrise: string;
@@ -99,7 +99,7 @@ interface Astro {
   is_sun_up: number;
 }
 
-interface Hour {
+export interface Hour {
   time_epoch: number;
   time: string;
   temp_c: number;
