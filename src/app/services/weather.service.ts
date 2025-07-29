@@ -15,7 +15,7 @@ import { WeatherDataResponse } from '../models/WeatherDataResponse';
 })
 export class WeatherService implements OnDestroy {
   store: Store<AppState> = inject(Store);
-  baseUrl: string = 'http://api.weatherapi.com/v1';
+  baseUrl: string = 'https://api.weatherapi.com/v1';
   key = '2692d29e4f324ab58b472021252807';
   WeatherSubscription?: Subscription;
 
