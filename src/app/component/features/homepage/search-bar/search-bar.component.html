@@ -1,5 +1,5 @@
-<section class="searchbar_container">
-  <h2>Search for location</h2>
+<section class="searchbar_container container">
+  <h2>Search for a location</h2>
   <label for="locationInput">Location</label>
   <div class="searchbar_input_container">
     <input
@@ -9,11 +9,12 @@
       id="locationInput"
       #locationInput
       placeholder="Ex: New York"
+      (input)="handleSearchByChange(locationInput)"
     />
     <button
       title="Search"
       class="searchbar_cta"
-      (click)="handleSearch(locationInput.value)"
+      (click)="handleSearchByButton(locationInput.value)"
     >
       <img
         class="search_icon"

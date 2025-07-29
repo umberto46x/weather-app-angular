@@ -2,7 +2,6 @@
 @use "../../../../styles/sizes" as *;
 
 .searchbar_container {
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,6 +11,7 @@
   margin-top: $m;
   margin-bottom: $m;
   background-color: $primaryC;
+  border-radius: 8px;
   color: white;
   transition: transform 0.5s;
 
@@ -59,9 +59,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid black;
 
     &:hover {
       cursor: pointer;
+      background-color: $primaryC;
+      border: 1px solid white;
     }
 
     .geolocalization_icon,
@@ -76,7 +79,6 @@
   .searchbar_container {
     margin-top: $l;
     margin-bottom: $l;
-    width: 80%;
     padding: $xl * 2;
 
     h2 {

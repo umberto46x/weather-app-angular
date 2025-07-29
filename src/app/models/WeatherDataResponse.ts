@@ -1,10 +1,10 @@
-export interface ForecastedWeatherResponse {
+export interface WeatherDataResponse {
   location: Location;
   current: Current;
   forecast: Forecast;
 }
 
-interface Location {
+export interface Location {
   name: string;
   region: string;
   country: string;
@@ -15,7 +15,7 @@ interface Location {
   localtime: string;
 }
 
-interface Current {
+export interface Current {
   last_updated_epoch: number;
   last_updated: string;
   temp_c: number;
@@ -53,7 +53,7 @@ interface Condition {
   code: number;
 }
 
-interface Forecast {
+export interface Forecast {
   forecastday: Forecastday[];
 }
 

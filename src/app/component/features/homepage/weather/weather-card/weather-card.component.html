@@ -1,1 +1,5 @@
-<article></article>
+@if (this.weatherData()) {
+  <article class="weather_card_container">
+    <h3>Today's Weather at {{ this.weatherData()?.current?.last_updated }}</h3>
+  </article>
+}

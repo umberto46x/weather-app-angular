@@ -1,3 +1,17 @@
-@if (this.search()) {
-  <div>{{ search() }}</div>
-}
+<section
+  *ngIf="weatherData$ | async as weather"
+  class="weather_container container"
+>
+  <h2>
+    Weather at
+    <span>{{ weather.data?.location?.name }}</span>
+  </h2>
+
+  <section class="weatherInfo_container container">
+    <app-weather-card [currentDay]="weather.data.current"></app-weather-card>
+    <app-weather-card
+      *ngFor="let forecastDay of weather.data?.forecast?.forecastday"
+      [forecastedDay]="{}"
+    />
+  </section>
+</section>

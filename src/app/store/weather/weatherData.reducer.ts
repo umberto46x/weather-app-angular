@@ -1,23 +1,19 @@
 import { createReducer, on, props } from '@ngrx/store';
-import { CurrentWeatherResponse } from '../../models/CurrentWeatherResponse';
-import { ForecastedWeatherResponse } from '../../models/ForecastedWeatherResponse';
+import { WeatherDataResponse } from '../../models/WeatherDataResponse';
 import {
-  setCurrentWeatherData,
   setErrorWeatherData,
-  setForecastedWeatherData,
   setLoadingWeatherData,
-} from '../actions/weatherData.actions';
+  setWeatherData,
+} from './weatherData.actions';
+
 export interface WeatherDataState {
-  data: {
-    currentWeatherData?: CurrentWeatherResponse;
-    forecastedWeatherData?: ForecastedWeatherResponse;
-  };
+  data: WeatherDataResponse | undefined;
   error: undefined | string;
   status: 'Pending' | 'Loading' | 'Success' | 'Error';
 }
 
 const initialWeatherDataState: WeatherDataState = {
-  data: {},
+  data: undefined,
   error: undefined,
   status: 'Pending',
 };
@@ -32,23 +28,11 @@ export const weatherDataReducer = createReducer(
     }),
   ),
   on(
-    setCurrentWeatherData,
+    setWeatherData,
     (state, payload): WeatherDataState => ({
       ...state,
       status: 'Success',
-      data: {
-        currentWeatherData: payload,
-      },
-    }),
-  ),
-  on(
-    setForecastedWeatherData,
-    (state, payload): WeatherDataState => ({
-      ...state,
-      status: 'Success',
-      data: {
-        forecastedWeatherData: payload,
-      },
+      data: payload,
     }),
   ),
   on(

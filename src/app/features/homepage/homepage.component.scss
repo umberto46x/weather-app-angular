@@ -4,7 +4,7 @@
 @use "../../component/features/homepage/search-bar/search-bar.component.scss";
 @use "../../component/features/homepage/weather/weather.component.scss";
 .homepage_container {
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: $s;

@@ -1,57 +1,55 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import axios from '../../../node_modules/axios';
-import { CurrentWeatherResponse } from '../models/CurrentWeatherResponse';
-import { AppState } from '../store/reducers';
-import { ForecastedWeatherResponse } from '../models/ForecastedWeatherResponse';
+import axios, { AxiosResponse } from '../../../node_modules/axios';
 import {
-  setCurrentWeatherData,
   setErrorWeatherData,
-  setForecastedWeatherData,
   setLoadingWeatherData,
-} from '../store/actions/weatherData.actions';
+  setWeatherData,
+} from '../store/weather/weatherData.actions';
+import { from, map, Observable, Subscription } from 'rxjs';
+import { AppState } from '../store';
+import { WeatherDataResponse } from '../models/WeatherDataResponse';
 
 @Injectable({
   providedIn: 'root',
 })
-export class WeatherService {
+export class WeatherService implements OnDestroy {
   store: Store<AppState> = inject(Store);
   baseUrl: string = 'http://api.weatherapi.com/v1';
   key = '2692d29e4f324ab58b472021252807';
+  WeatherSubscription?: Subscription;
 
-  loadForecastWeatherData(query: string) {
-    const url: string =
-      this.baseUrl +
-      `/forecast.json?key=${this.key}&q=${query}&days=10&aqi=no&alerts=no`;
-    let response: ForecastedWeatherResponse;
+  loadWeatherData(query: string) {
+    if (query && query.length > 1) {
+      const url: string =
+        this.baseUrl +
+        `/forecast.json?key=${this.key}&q=${query}&days=10&aqi=no&alerts=no`;
 
-    this.store.dispatch(setLoadingWeatherData());
+      const response: Observable<AxiosResponse<WeatherDataResponse>> = from(
+        axios.get<WeatherDataResponse>(url),
+      );
 
-    try {
-      (async () => {
-        response = (await axios.get<ForecastedWeatherResponse>(url)).data;
-        this.store.dispatch(setForecastedWeatherData(response));
-      })();
-    } catch (err) {
-      this.store.dispatch(setErrorWeatherData({ error: Error.toString() }));
+      this.store.dispatch(setLoadingWeatherData());
+
+      try {
+        this.WeatherSubscription = response
+          .pipe(map((v) => v.data))
+          .subscribe((v) =>
+            this.store.dispatch(
+              setWeatherData({
+                ...v,
+              }),
+            ),
+          );
+      } catch (err: any) {
+        this.store.dispatch(setErrorWeatherData({ error: err.toString() }));
+      }
     }
   }
 
-  loadCurrentWeatherData(query: string) {
-    const url: string =
-      this.baseUrl + `/current.json?key=${this.key}&q=${query}&aqi=yes`;
-
-    let response: CurrentWeatherResponse;
-
-    this.store.dispatch(setLoadingWeatherData());
-
-    try {
-      (async () => {
-        response = (await axios.get<CurrentWeatherResponse>(url)).data;
-        this.store.dispatch(setCurrentWeatherData(response));
-      })();
-    } catch (err) {
-      this.store.dispatch(setErrorWeatherData({ error: Error.toString() }));
+  ngOnDestroy(): void {
+    if (this.WeatherSubscription) {
+      this.WeatherSubscription?.unsubscribe();
     }
   }
 }

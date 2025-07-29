@@ -3,7 +3,7 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
-import { reducers, metaReducers } from './store/reducers';
+import { metaReducers, reducers } from './store';
 
 export const appConfig: ApplicationConfig = {
   providers: [

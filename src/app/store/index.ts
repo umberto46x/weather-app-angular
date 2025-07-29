@@ -1,12 +1,9 @@
 import { isDevMode } from '@angular/core';
+import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import {
-  ActionReducer,
-  ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
-  MetaReducer,
-} from '@ngrx/store';
-import { weatherDataReducer, WeatherDataState } from './weatherData.reducer';
+  weatherDataReducer,
+  WeatherDataState,
+} from './weather/weatherData.reducer';
 
 export interface AppState {
   weatherData: WeatherDataState;
