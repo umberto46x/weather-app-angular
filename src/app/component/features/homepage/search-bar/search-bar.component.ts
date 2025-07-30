@@ -37,7 +37,6 @@ export class SearchBarComponent implements OnDestroy {
     if (v) {
       this.search.set(v);
       this.weatherService.loadWeatherData(this.search());
-      console.log(this.search());
     }
   }
 
@@ -50,7 +49,6 @@ export class SearchBarComponent implements OnDestroy {
       .subscribe((e) => {
         this.search.set(e);
         this.weatherService.loadWeatherData(this.search());
-        console.log(this.search());
       });
   }
 
